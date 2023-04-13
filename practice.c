@@ -1,4 +1,4 @@
-Top-K排序
+Top-K排序，一般情况下数据量比较大
 
 void PrintTopK(int* a, int n, int k)
 {
