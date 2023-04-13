@@ -38,7 +38,7 @@ void HeapPush(HP* php, HPDataType x)
 
 }
 
-HPDataType HeadTop(HP* php)
+HPDataType HeapTop(HP* php)
 {
 	assert(php);
 	assert(php->size > 0);
