@@ -1,4 +1,5 @@
 Top-K排序，一般情况下数据量比较大
+时间复杂度O(K+(N-K)*logK)
 
 void PrintTopK(int* a, int n, int k)
 {
