@@ -184,3 +184,17 @@ BTNode* TreeFind(BTNode* root, BTDataType x)
 
 	return NULL;
 }
+
+//二叉树的销毁
+void TreeDestroy(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return;
+    }
+
+	TestDestroy(root->left);
+	TestDestroy(root->right);
+	//printf("%p:%d\n", root, root->data);
+	free(root);
+}
