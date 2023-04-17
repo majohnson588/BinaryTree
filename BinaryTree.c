@@ -198,3 +198,78 @@ void TreeDestroy(BTNode* root)
 	//printf("%p:%d\n", root, root->data);
 	free(root);
 }
+
+//层序遍历(广度）
+//借助队列
+void LevelOrder(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+	if (root)
+	{
+		QueuePush(&q, root);
+	}
+
+	while (!QueueEmpty(&q))
+	{
+		BTNode* front = QueueFront(&q);
+		printf("%d ", front->data);
+		QueuePop(&q);
+
+		if (front->left)
+		{
+			QueuePush(&q, front->left);
+		}
+		if (front->right)
+		{
+			QueuePush(&q, front->right);
+		}
+	}
+	printf("\n");
+	QueueDestroy(&q);
+}
+
+//判断二叉树是不是完全二叉树
+int BinaryTreeComplete(BTNode* root)
+{
+	Queue q;
+	QueueInit(&q);
+	if (root)
+	{
+		QueuePush(&q, root);
+	}
+
+	while (!QueueEmpty(&q))
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+
+		if (front)
+		{
+			QueuePush(&q, front->left);
+			QueuePush(&q, front->right);
+		}
+		else
+		{
+			//遇到空以后，则跳出层序遍历
+			break;
+		}
+	}
+
+	//1、如果后面全是空、则是完全二叉树
+	//2、如果空后面还有非空，则不是完全二叉树
+	while (!QueueEmpty(&q))
+	{
+		BTNode* front = QueueFront(&q);
+		QueuePop(&q);
+
+		if (front)
+		{
+			QueueDestroy(&q);
+			return false;
+		}
+	}
+
+	QueueDestroy(&q);
+	return true;
+}
